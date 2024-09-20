@@ -4,6 +4,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChirpController;
 
+/*DB::listen(function($query){*/
+    /*logger($query-sql, $query->bindings);*/
+/*    @dump($query->sql);*/
+/*});*/
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +44,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/chirps', [ChirpController::class, 'index'])->name('chirps.index');
 
     Route::post('/chirps', [ChirpController::class,'store'])->name('chirps.store');
+
+    Route::get('/chirps/{chirp}/edit', [ChirpController::class,'edit'])->name('chirps.edit');
+
+    Route::put('/chirps/{chirp}', [ChirpController::class,'update'])->name('chirps.update');
+
+    Route::delete('/chirps/{chirp}', [ChirpController::class,'destroy'])->name('chirps.destroy');
     
     //session()->flash('status', 'Chirp creado con éxito!');  // session flash message
 
